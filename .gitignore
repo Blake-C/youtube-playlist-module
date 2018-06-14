@@ -40,3 +40,4 @@ logs
 cache
 .phpintel
 assets
+/app/components/scripts/modules/auth.js
