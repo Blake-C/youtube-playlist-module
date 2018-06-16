@@ -1,12 +1,3 @@
-import lscache from 'lscache';
-import AUTH from './auth';
-
-
-const playlist_id    = 'PLkkY7rUh56sKCgtAeu0A0zXku1EbkTGNP';
-const request_domain = 'https://www.googleapis.com/youtube/v3/playlistItems';
-const max_results    = '5';
-
-
 const parse_data = function( response ) {
 	const app          = document.getElementById( 'app' );
 	const wrapper      = document.createElement( 'div' );
@@ -15,6 +6,7 @@ const parse_data = function( response ) {
 
 	video_ul.className = 'video-list';
 	iframe.className   = 'video-player';
+	wrapper.className  = 'youtube-video-playlist';
 
 	response.items.map( data => {
 		video_ul.innerHTML += `<li>
@@ -46,18 +38,4 @@ const parse_data = function( response ) {
 	});
 };
 
-
-/**
- * Get Data.
- */
-if ( lscache.get( 'playlist-response' ) && ( lscache.get( 'playlist-response' ) !== null ) ) {
-	parse_data( lscache.get( 'playlist-response' ) );
-} else {
-	fetch( `${ request_domain }?part=snippet&playlistId=${ playlist_id }&maxResults=${ max_results }&key=${ AUTH.api_key }` )
-		.then( response => response.json() )
-		.then( json_data => {
-			lscache.set( 'playlist-response', json_data, 1440 );
-			parse_data( json_data );
-		})
-		.catch( error => console.error( error ) ); // eslint-disable-line
-}
+export default parse_data;
