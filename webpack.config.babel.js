@@ -10,7 +10,6 @@
 import path from 'path';
 import ModernizrWebpackPlugin from 'modernizr-webpack-plugin';
 import scriptsList from './app/components/scripts/scripts-list.js';
-import modernizrFeatureDetects from './app/components/scripts/modernizr-feature-detects.js';
 
 const webpackConfig = {
 	mode: 'production',
@@ -60,25 +59,7 @@ const webpackConfig = {
 				]
 			}
 		}]
-	},
-	plugins: [
-		new ModernizrWebpackPlugin({
-			filename: 'bundle.modernizr.js',
-			minify: {
-				output: {
-					comments: false,
-					beautify: false
-				}
-			},
-			'options': [
-				'html5printshiv',
-				'html5shiv',
-				'prefixed',
-				'setClasses'
-			],
-			'feature-detects': modernizrFeatureDetects
-		})
-	]
+	}
 };
 
 export default webpackConfig;
