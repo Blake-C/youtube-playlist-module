@@ -4,7 +4,11 @@ import YoutubePlaylistModule from './YoutubePlaylistModule.js';
 
 const playlist_1 = document.getElementsByClassName( 'playlist-1' );
 const args = {
-	element: playlist_1
+	element: playlist_1,
+	max_results: 2,
+	additional_args: {
+		showinfo: 0
+	}
 };
 const playlist_init_1 = new YoutubePlaylistModule( args );
 playlist_init_1.init();
