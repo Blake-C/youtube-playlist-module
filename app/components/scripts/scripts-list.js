@@ -4,7 +4,8 @@
  */
 
 const scriptsList = {
-	'main': './app/components/scripts/main.js'
+	'main': './app/components/scripts/YoutubePlaylistModule.js',
+	'test': './app/components/scripts/test.js'
 };
 
 export default scriptsList;

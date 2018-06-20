@@ -1,39 +1,39 @@
-const parse_data = function( response ) {
-	const app          = document.getElementById( 'app' );
+const parse_data = function( response, element ) {
 	const wrapper      = document.createElement( 'div' );
 	const video_ul     = document.createElement( 'ul' );
-	const iframe       = document.createElement( 'div' );
+	const video_player = document.createElement( 'div' );
 
-	video_ul.className = 'video-list';
-	iframe.className   = 'video-player';
-	wrapper.className  = 'youtube-video-playlist';
+	video_ul.className     = 'video-list';
+	video_player.className = 'video-player';
+	wrapper.className      = 'youtube-video-playlist';
 
 	response.items.map( data => {
 		video_ul.innerHTML += `<li>
-			<a href="#" data-id="${data.snippet.resourceId.videoId}" class="video-item">
+			<a href="#" data-id="${ data.snippet.resourceId.videoId }">
 				${ data.snippet.title } <br />
 				<img src="${ data.snippet.thumbnails.medium.url }" /> <br />
 			</a>
 		</li>`;
 	} );
 
-	iframe.innerHTML = '<iframe src="" id="video_player" frameborder="0" allowfullscreen></iframe>';
-	wrapper.appendChild( iframe );
+	video_player.innerHTML = '<iframe src="" frameborder="0" allowfullscreen></iframe>';
+	wrapper.appendChild( video_player );
 	wrapper.appendChild( video_ul );
-	app.appendChild( wrapper );
 
-	const video_items = document.getElementsByClassName( 'video-item' );
+	element.appendChild( wrapper );
 
-	Array.from( video_items ).forEach( (element, index) => {
-		const video_player = document.getElementById( 'video_player' );
+	const video_items = video_ul.getElementsByTagName( 'a' );
+
+	Array.from( video_items ).forEach( ( item, index ) => {
+		const iframe = video_player.childNodes[0];
 		const video_url    = id => `http://www.youtube.com/embed/${ id }`;
 
-		index === 0 ? video_player.setAttribute( 'src', video_url( element.getAttribute( 'data-id' ) ) ) : '';
+		index === 0 ? iframe.setAttribute( 'src', video_url( item.getAttribute( 'data-id' ) ) ) : '';
 
-		element.addEventListener( 'click', function( event ) {
+		item.addEventListener( 'click', function( event ) {
 			event.preventDefault();
 
-			video_player.setAttribute( 'src', video_url( this.getAttribute( 'data-id' ) ) );
+			iframe.setAttribute( 'src', video_url( this.getAttribute( 'data-id' ) ) );
 		});
 	});
 };
