@@ -5,17 +5,16 @@ export default class YoutubePlaylistModule {
 		element,
 		playlist_id,
 		max_results = '5',
-		additional_args = {}
+		iframe_options = {}
 	}) {
-		this.element         = element;
-		this.playlist_id     = playlist_id;
-		this.max_results     = max_results;
-		this.additional_args = additional_args;
-		this.request_domain  = 'https://www.googleapis.com/youtube/v3/playlistItems';
+		this.element        = element;
+		this.playlist_id    = playlist_id;
+		this.max_results    = max_results;
+		this.iframe_options = iframe_options;
+		this.request_domain = 'https://www.googleapis.com/youtube/v3/playlistItems';
 	}
 
 	init() {
-
 		if ( this.element.length ) {
 			Array.from( this.element ).map( item => {
 				this._get_data( item.getAttribute( 'data-playlist' ), item );

@@ -5,8 +5,8 @@ import YoutubePlaylistModule from './YoutubePlaylistModule.js';
 const playlist_1 = document.getElementsByClassName( 'playlist-1' );
 const args = {
 	element: playlist_1,
-	max_results: 2,
-	additional_args: {
+	max_results: 20,
+	iframe_options: {
 		showinfo: 0
 	}
 };
