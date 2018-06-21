@@ -3,7 +3,7 @@ import YoutubePlaylistModule from './YoutubePlaylistModule.js';
 // -------------->
 
 const playlist_1 = document.getElementsByClassName( 'playlist-1' );
-const args = {
+new YoutubePlaylistModule({
 	element: playlist_1,
 	max_results: 20,
 	iframe_options: {
@@ -11,18 +11,12 @@ const args = {
 		autoplay: 1,
 		rel: 0,
 	}
-};
-const playlist_init_1 = new YoutubePlaylistModule( args );
-playlist_init_1.init();
+});
 
 // -------------->
 
-const playlist_2      = document.getElementById( 'playlist-2' );
-const args_2 = {
+const playlist_2 = document.getElementById( 'playlist-2' );
+new YoutubePlaylistModule({
 	element: playlist_2,
 	playlist_id: 'PLkkY7rUh56sKCgtAeu0A0zXku1EbkTGNP'
-};
-const playlist_init_2 = new YoutubePlaylistModule( args_2 );
-playlist_init_2.init();
-
-
+});

@@ -12,6 +12,8 @@ export default class YoutubePlaylistModule {
 		this.max_results    = max_results;
 		this.iframe_options = iframe_options;
 		this.request_domain = 'https://www.googleapis.com/youtube/v3/playlistItems';
+
+		this.init();
 	}
 
 	init() {
