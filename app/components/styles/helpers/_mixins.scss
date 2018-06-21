@@ -1,0 +1,28 @@
+@mixin clearfix {
+	&:after {
+		clear: both;
+		content: '';
+		display: table;
+	}
+} // to use: @include clearfix;
+
+@mixin aspect-ratio($width, $height) {
+	position: relative;
+
+	&:before {
+		content: '';
+		display: block;
+		padding-top: ($height / $width) * 100%;
+		width: 100%;
+	}
+
+	iframe {
+		bottom: 0;
+		height: 100%;
+		left: 0;
+		position: absolute;
+		right: 0;
+		top: 0;
+		width: 100%;
+	}
+} // to use: @include aspect-ratio($width, $height);

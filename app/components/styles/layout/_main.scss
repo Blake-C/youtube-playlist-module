@@ -1,11 +1,95 @@
-h1 {
-	font-size: rem-calc(28);
-	text-transform: uppercase;
+.youtube-video-playlist {
+	margin: 20px 0;
 }
 
-.browserupgrade {
-	background: $white;
-	color: $black;
-	margin: 0.2em 0;
-	padding: 0.2em 0;
+.video-player {
+	@include aspect-ratio(560, 315)
+
+	max-width: $max-width;
+}
+
+.video-list-wrapper {
+	background-color: $black;
+	max-width: $max-width;
+	position: relative;
+
+	&:after,
+	&:before {
+		content: '';
+		display: block;
+		height: 30px;
+		pointer-events: none;
+		position: absolute;
+		width: 100%;
+	}
+
+	&:before {
+		background: linear-gradient(
+			to bottom,
+			rgba($black, 0.3) 0%,
+			transparent 100%
+		);
+		top: 0;
+	}
+
+	&:after {
+		background: linear-gradient(
+			to top,
+			rgba($black, 0.3) 0%,
+			transparent 100%
+		);
+		bottom: 0;
+	}
+}
+
+.video-list {
+	margin: 0;
+	max-height: 330px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	padding: 10px;
+	-webkit-overflow-scrolling: touch;
+
+	li {
+		clear: both;
+		display: block;
+		list-style-type: none;
+		margin: 10px 0;
+		padding: 0;
+
+		&:first-child {
+			margin-top: 0;
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	a {
+		@include clearfix;
+
+		background-color: $red;
+		color: $white;
+		display: block;
+		padding: 10px;
+		text-decoration: none;
+		transition: background-color 0.3s;
+
+		&.active {
+			background-color: darken($blue, 5%);
+		}
+
+		&:hover,
+		&:focus {
+			background-color: $blue;
+		}
+	}
+
+	img {
+		display: block;
+		float: left;
+		margin-right: 20px;
+		max-width: 200px;
+	}
 }
