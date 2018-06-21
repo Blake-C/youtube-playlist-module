@@ -45,18 +45,18 @@ export default class YoutubePlaylistModule {
 	}
 
 	_parse_data( response, element ) {
-		const wrapper      = document.createElement( 'div' );
-		const video_ul     = document.createElement( 'ul' );
-		const video_list   = document.createElement( 'div' );
+		const frame_wrap   = document.createElement( 'div' );
+		const video_list   = document.createElement( 'ul' );
+		const list_wrap    = document.createElement( 'div' );
 		const video_player = document.createElement( 'div' );
 
-		video_ul.className     = 'video-list';
+		video_list.className   = 'video-list';
 		video_player.className = 'video-player';
-		wrapper.className      = 'youtube-video-playlist';
-		video_list.className   = 'video-list-wrapper';
+		frame_wrap.className   = 'youtube-video-playlist';
+		list_wrap.className    = 'video-list-wrapper';
 
 		response.items.map( data => {
-			video_ul.innerHTML += `<li>
+			video_list.innerHTML += `<li>
 				<a href="#" data-id="${ data.snippet.resourceId.videoId }">
 					<img src="${ data.snippet.thumbnails.medium.url }" />
 					<p>${ data.snippet.title }</p>
@@ -65,14 +65,14 @@ export default class YoutubePlaylistModule {
 		} );
 
 		video_player.innerHTML = '<iframe src="" width="560" height="315" frameborder="0" allowfullscreen></iframe>';
-		video_list.appendChild( video_ul );
-		wrapper.appendChild( video_player );
-		wrapper.appendChild( video_list );
-		element.appendChild( wrapper );
+		list_wrap.appendChild( video_list );
+		frame_wrap.appendChild( video_player );
+		frame_wrap.appendChild( list_wrap );
+		element.appendChild( frame_wrap );
 
-		const video_items = video_ul.getElementsByTagName( 'a' );
+		const video_items = video_list.getElementsByTagName( 'a' );
 
-		Array.from( video_items ).forEach( ( item, index ) => {
+		Array.from( video_items ).map( ( item, index ) => {
 			const iframe = video_player.childNodes[0];
 
 			// https://developers.google.com/youtube/player_parameters
