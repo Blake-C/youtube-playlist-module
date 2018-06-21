@@ -7,7 +7,9 @@ const args = {
 	element: playlist_1,
 	max_results: 20,
 	iframe_options: {
-		showinfo: 0
+		showinfo: 0,
+		autoplay: 1,
+		rel: 0,
 	}
 };
 const playlist_init_1 = new YoutubePlaylistModule( args );
