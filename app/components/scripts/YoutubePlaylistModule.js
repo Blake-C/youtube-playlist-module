@@ -79,7 +79,7 @@ export default class YoutubePlaylistModule {
 		Array.from( video_items ).map( ( item, index ) => {
 			const iframe = video_player.childNodes[0];
 
-			// https://developers.google.com/youtube/player_parameters
+			// Other params: https://developers.google.com/youtube/player_parameters
 			const video_url = id => `http://www.youtube.com/embed/${ id }?${ this._param( this.iframe_options ) }`;
 
 			index === 0 ? iframe.setAttribute( 'src', video_url( item.getAttribute( 'data-id' ) ) ) : '';
