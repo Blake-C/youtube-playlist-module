@@ -52,10 +52,10 @@ export default class YoutubePlaylistModule {
 		const list_wrap    = document.createElement( 'div' );
 		const video_player = document.createElement( 'div' );
 
-		video_list.className   = 'video-list';
-		video_player.className = 'video-player';
-		frame_wrap.className   = 'youtube-video-playlist';
-		list_wrap.className    = 'video-list-wrapper';
+		video_list.className   = 'ypm_video-list';
+		video_player.className = 'ypm_video-player';
+		frame_wrap.className   = 'ypm_youtube-video-playlist';
+		list_wrap.className    = 'ypm_video-list-wrapper';
 
 		response.items.map( data => {
 			video_list.innerHTML += `<li>
@@ -81,13 +81,13 @@ export default class YoutubePlaylistModule {
 			const video_url = id => `http://www.youtube.com/embed/${ id }?${ this._param( this.iframe_options ) }`;
 
 			index === 0 ? iframe.setAttribute( 'src', video_url( item.getAttribute( 'data-id' ) ) ) : '';
-			index === 0 ? item.setAttribute( 'class', 'active' ) : '';
+			index === 0 ? item.setAttribute( 'class', 'ypm_active' ) : '';
 
 			item.addEventListener( 'click', function( event ) {
 				event.preventDefault();
 
 				Array.from( video_items ).map( item => item.setAttribute( 'class', '' ) );
-				this.setAttribute( 'class', 'active' );
+				this.setAttribute( 'class', 'ypm_active' );
 				iframe.setAttribute( 'src', video_url( this.getAttribute( 'data-id' ) ) );
 			});
 		});

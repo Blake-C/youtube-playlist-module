@@ -1,14 +1,14 @@
-.youtube-video-playlist {
+.ypm_youtube-video-playlist {
 	margin: 20px 0;
 }
 
-.video-player {
+.ypm_video-player {
 	@include aspect-ratio(560, 315)
 
 	max-width: $max-width;
 }
 
-.video-list-wrapper {
+.ypm_video-list-wrapper {
 	background-color: $black;
 	max-width: $max-width;
 	position: relative;
@@ -42,7 +42,7 @@
 	}
 }
 
-.video-list {
+.ypm_video-list {
 	margin: 0;
 	max-height: 330px;
 	overflow-x: hidden;
@@ -79,7 +79,7 @@
 		text-decoration: none;
 		transition: background-color 0.3s;
 
-		&.active {
+		&.ypm_active {
 			background-color: darken($blue, 5%);
 		}
 
