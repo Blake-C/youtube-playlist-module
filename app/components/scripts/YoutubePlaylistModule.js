@@ -48,6 +48,15 @@ export default class YoutubePlaylistModule {
 		return Object.entries( object ).map( ( [key, val] ) => `${key}=${val}` ).join('&');
 	}
 
+	list_item_template( data ) {
+		return `<li>
+				<a href="#" data-id="${ data.snippet.resourceId.videoId }">
+					<img src="${ data.snippet.thumbnails[ this.thumbnail_size ].url }" />
+					<p>${ data.snippet.title }</p>
+				</a>
+			</li>`;
+	}
+
 	_parse_data( response, element ) {
 		const frame_wrap   = document.createElement( 'div' );
 		const video_list   = document.createElement( 'ul' );
@@ -59,14 +68,7 @@ export default class YoutubePlaylistModule {
 		frame_wrap.className   = 'ypm_youtube-video-playlist';
 		list_wrap.className    = 'ypm_video-list-wrapper';
 
-		response.items.map( data => {
-			video_list.innerHTML += `<li>
-				<a href="#" data-id="${ data.snippet.resourceId.videoId }">
-					<img src="${ data.snippet.thumbnails[this.thumbnail_size].url }" />
-					<p>${ data.snippet.title }</p>
-				</a>
-			</li>`;
-		} );
+		response.items.map( data => video_list.innerHTML += this.list_item_template( data ) );
 
 		video_player.innerHTML = '<iframe src="" width="560" height="315" frameborder="0" allowfullscreen></iframe>';
 		list_wrap.appendChild( video_list );
