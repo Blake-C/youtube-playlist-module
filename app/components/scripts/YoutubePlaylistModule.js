@@ -15,10 +15,10 @@ export default class YoutubePlaylistModule {
 		this.iframe_options = iframe_options;
 		this.request_domain = 'https://www.googleapis.com/youtube/v3/playlistItems';
 
-		this.init();
+		this._init();
 	}
 
-	init() {
+	_init() {
 		if ( this.element.length ) {
 			Array.from( this.element ).map( item => {
 				this._get_data( item.getAttribute( 'data-playlist' ), item );
