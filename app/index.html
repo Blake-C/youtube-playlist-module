@@ -11,27 +11,31 @@
 		<title>YouTube Playlist</title>
 		<link rel="shortcut icon" href="/assets/icons/favicon.ico">
 
-		<link rel="stylesheet" href="assets/styles/styles.css">
+		<link rel="stylesheet" href="/assets/styles/styles.css">
 	</head>
 	<body>
 		<!--[if lt IE 10]>
 			<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 		<![endif]-->
 
+		<style type="text/css">
+			.wrapper {
+				display: grid;
+				grid-template-columns: 500px 500px 500px 500px;
+				column-gap: 20px;
+				row-gap: 20px;
+			}
+		</style>
+
 		<section>
-			<div class="container">
+			<div class="wrapper">
 				<div class="playlist-1" data-playlist="PL0zVEGEvSaeHgdv6t242ukQNIOtHNgzOJ"></div>
-
-				<hr>
-
 				<div class="playlist-1" data-playlist="PLyBrFxr0n1iNviMy97Wu1QQSbNLmlJ_4-"></div>
-
-				<hr>
-
 				<div id="playlist-2"></div>
+				<div id="playlist-3"></div>
 			</div>
 		</section>
 
-		<script src="assets/scripts/bundle.test.js"></script>
+		<script src="/assets/scripts/bundle.test.js"></script>
 	</body>
 </html>
