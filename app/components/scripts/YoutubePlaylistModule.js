@@ -1,12 +1,12 @@
-import AUTH from './modules/auth';
-
 export default class YoutubePlaylistModule {
 	constructor({
+		api_key,
 		element,
 		playlist_id,
 		max_results = '5',
 		iframe_options = {}
 	}) {
+		this.api_key        = api_key;
 		this.element        = element;
 		this.playlist_id    = playlist_id;
 		this.max_results    = max_results;
@@ -31,7 +31,7 @@ export default class YoutubePlaylistModule {
 			part: 'snippet',
 			playlistId: playlist_id,
 			maxResults: this.max_results,
-			key: AUTH.api_key
+			key: this.api_key
 		};
 
 		fetch( this.request_domain + '?' + this._param( query ) )
