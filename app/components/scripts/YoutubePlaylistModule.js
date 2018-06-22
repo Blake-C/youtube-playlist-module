@@ -41,7 +41,7 @@ export default class YoutubePlaylistModule {
 			.then( json_data => {
 				this._parse_data( json_data, element );
 			})
-			.catch( error => console.error( error ) ); // eslint-disable-line
+			.catch( error => console.error( error ) ); // eslint-disable-line no-console
 	}
 
 	_param( object ) {
