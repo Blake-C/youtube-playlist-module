@@ -75,9 +75,14 @@ export default class YoutubePlaylistModule {
 		element.appendChild( frame_wrap );
 
 		const video_items = video_list.getElementsByTagName( 'a' );
+		const initial_autoplay_state = this.iframe_options.autoplay;
 
 		Array.from( video_items ).map( ( item, index ) => {
 			const iframe = video_player.childNodes[0];
+
+			index === 0 ? // On the first interation we don't ever want to autoplay video.
+				this.iframe_options.autoplay = 0 :
+				this.iframe_options.autoplay = initial_autoplay_state;
 
 			// Other params: https://developers.google.com/youtube/player_parameters
 			const video_url = id => `http://www.youtube.com/embed/${ id }?${ this._param( this.iframe_options ) }`;
