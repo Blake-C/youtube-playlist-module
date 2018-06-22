@@ -44,9 +44,10 @@ class YoutubePlaylistModuleCustom extends YoutubePlaylistModule {
 const playlist_3 = new YoutubePlaylistModuleCustom({
 	api_key: AUTH.api_key,
 	element: document.getElementById( 'playlist-3' ),
+	max_results: 20,
 	iframe_options: {
 		autoplay: 1
 	},
-	playlist_id: 'PLLnpHn493BHGUi9yTNXUXWAWyKmWKMNND'
+	playlist_id: 'PLLnpHn493BHFTDL9M1PKnxQwBwOZ8J-h4'
 });
 playlist_3.init();
