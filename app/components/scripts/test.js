@@ -31,13 +31,13 @@ class YoutubePlaylistModuleCustom extends YoutubePlaylistModule {
 		const date = new Date( data.snippet.publishedAt ).toISOString().split('T')[0];
 
 		return `<li>
-				<a class="ypm_video_items" href="#" data-id="${ data.snippet.resourceId.videoId }">
-					<p>
-						${ date } <br/> <br/>
-						${ data.snippet.description }
-					</p>
-				</a>
-			</li>`;
+			<a class="ypm_video_items" href="#" data-id="${ data.snippet.resourceId.videoId }">
+				<p>
+					${ date } <br/> <br/>
+					${ data.snippet.description }
+				</p>
+			</a>
+		</li>`;
 	}
 }
 
