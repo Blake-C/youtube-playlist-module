@@ -44,46 +44,46 @@ export default class YoutubePlaylistModule {
 		return Object.entries( object ).map( ( [key, val] ) => `${key}=${val}` ).join('&');
 	}
 
-	list_item_template( data ) {
+	playlist_items_template( data ) {
 		return `<li>
-				<a href="#" data-id="${ data.snippet.resourceId.videoId }">
-					<img src="${ data.snippet.thumbnails.medium.url }" />
-					<p>${ data.snippet.title }</p>
-				</a>
-			</li>`;
+			<a class="ypm_video_items" href="#" data-id="${ data.snippet.resourceId.videoId }">
+				<img src="${ data.snippet.thumbnails.medium.url }" />
+				<p>${ data.snippet.title }</p>
+			</a>
+		</li>`;
+	}
+
+	playlist_template( response ) {
+		return `<div class="ypm_youtube-video-playlist">
+			<div class="ypm_video-player">
+				<iframe class="ypm_iframe" src="" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+			</div>
+
+			<div class="ypm_video-list-wrapper">
+				<ul class="ypm_video-list">
+					${ response.items.map( data => this.playlist_items_template( data ) ).join('') }
+				</ul>
+			</div>
+		</div>`;
 	}
 
 	_parse_data( response, element ) {
-		const frame_wrap   = document.createElement( 'div' );
-		const video_list   = document.createElement( 'ul' );
-		const list_wrap    = document.createElement( 'div' );
-		const video_player = document.createElement( 'div' );
+		const template       = this.playlist_template( response );
+		const fragment       = new DOMParser().parseFromString( template, 'text/html' );
+		const playlist       = fragment.body.childNodes[0];
+		const video_items    = playlist.getElementsByClassName( 'ypm_video_items' );
+		const iframe         = playlist.getElementsByClassName( 'ypm_iframe' )[0];
+		const autoplay_state = this.iframe_options.autoplay;
 
-		video_list.className   = 'ypm_video-list';
-		video_player.className = 'ypm_video-player';
-		frame_wrap.className   = 'ypm_youtube-video-playlist';
-		list_wrap.className    = 'ypm_video-list-wrapper';
+		element.appendChild( playlist );
 
-		response.items.map( data => video_list.innerHTML += this.list_item_template( data ) );
-
-		video_player.innerHTML = '<iframe src="" width="560" height="315" frameborder="0" allowfullscreen></iframe>';
-		list_wrap.appendChild( video_list );
-		frame_wrap.appendChild( video_player );
-		frame_wrap.appendChild( list_wrap );
-		element.appendChild( frame_wrap );
-
-		const video_items = video_list.getElementsByTagName( 'a' );
-		const initial_autoplay_state = this.iframe_options.autoplay;
+		// Other params: https://developers.google.com/youtube/player_parameters
+		const video_url = id => `http://www.youtube.com/embed/${ id }?${ this._param( this.iframe_options ) }`;
 
 		Array.from( video_items ).map( ( item, index ) => {
-			const iframe = video_player.childNodes[0];
-
 			index === 0 ? // On the first interation we don't ever want to autoplay video.
 				this.iframe_options.autoplay = 0 :
-				this.iframe_options.autoplay = initial_autoplay_state;
-
-			// Other params: https://developers.google.com/youtube/player_parameters
-			const video_url = id => `http://www.youtube.com/embed/${ id }?${ this._param( this.iframe_options ) }`;
+				this.iframe_options.autoplay = autoplay_state;
 
 			index === 0 ? iframe.setAttribute( 'src', video_url( item.getAttribute( 'data-id' ) ) ) : '';
 			index === 0 ? item.setAttribute( 'class', 'ypm_active' ) : '';

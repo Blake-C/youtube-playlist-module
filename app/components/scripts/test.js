@@ -27,11 +27,11 @@ playlist_2.init();
 // -------------->
 
 class YoutubePlaylistModuleCustom extends YoutubePlaylistModule {
-	list_item_template( data ) {
+	playlist_items_template( data ) {
 		const date = new Date( data.snippet.publishedAt ).toISOString().split('T')[0];
 
 		return `<li>
-				<a href="#" data-id="${ data.snippet.resourceId.videoId }">
+				<a class="ypm_video_items" href="#" data-id="${ data.snippet.resourceId.videoId }">
 					<p>
 						${ date } <br/> <br/>
 						${ data.snippet.description }
