@@ -4,14 +4,12 @@ export default class YoutubePlaylistModule {
 		element,
 		playlist_id,
 		max_results = '5',
-		thumbnail_size = 'medium',
 		iframe_options = {}
 	}) {
 		this.api_key        = api_key;
 		this.element        = element;
 		this.playlist_id    = playlist_id;
 		this.max_results    = max_results;
-		this.thumbnail_size = thumbnail_size;
 		this.iframe_options = iframe_options;
 		this.request_domain = 'https://www.googleapis.com/youtube/v3/playlistItems';
 	}
@@ -49,7 +47,7 @@ export default class YoutubePlaylistModule {
 	list_item_template( data ) {
 		return `<li>
 				<a href="#" data-id="${ data.snippet.resourceId.videoId }">
-					<img src="${ data.snippet.thumbnails[ this.thumbnail_size ].url }" />
+					<img src="${ data.snippet.thumbnails.medium.url }" />
 					<p>${ data.snippet.title }</p>
 				</a>
 			</li>`;
