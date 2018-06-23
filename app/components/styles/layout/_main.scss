@@ -6,6 +6,10 @@
 	@include aspect-ratio(560, 315)
 
 	max-width: $max-width;
+
+	iframe {
+		background-color: $gray;
+	}
 }
 
 .ypm_video-list-wrapper {
