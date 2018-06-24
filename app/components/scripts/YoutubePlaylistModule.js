@@ -86,13 +86,13 @@ export default class YoutubePlaylistModule {
 				this.iframe_options.autoplay = autoplay_state;
 
 			index === 0 ? iframe.setAttribute( 'src', video_url( item.getAttribute( 'data-id' ) ) ) : '';
-			index === 0 ? item.setAttribute( 'class', 'ypm_active' ) : '';
+			index === 0 ? item.classList.add( 'ypm_active' ) : '';
 
 			item.addEventListener( 'click', function( event ) {
 				event.preventDefault();
 
-				Array.from( video_items ).map( item => item.setAttribute( 'class', '' ) );
-				this.setAttribute( 'class', 'ypm_active' );
+				Array.from( video_items ).map( item => item.classList.remove( 'ypm_active' ) );
+				this.classList.add( 'class', 'ypm_active' );
 				iframe.setAttribute( 'src', video_url( this.getAttribute( 'data-id' ) ) );
 			});
 		});
