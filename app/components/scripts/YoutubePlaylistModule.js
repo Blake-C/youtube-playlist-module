@@ -92,7 +92,7 @@ export default class YoutubePlaylistModule {
 				event.preventDefault();
 
 				Array.from( video_items ).map( item => item.classList.remove( 'ypm_active' ) );
-				this.classList.add( 'class', 'ypm_active' );
+				this.classList.add( 'ypm_active' );
 				iframe.setAttribute( 'src', video_url( this.getAttribute( 'data-id' ) ) );
 			});
 		});
