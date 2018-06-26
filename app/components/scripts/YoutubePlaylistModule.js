@@ -32,7 +32,7 @@ export default class YoutubePlaylistModule {
 			key: this.api_key
 		};
 
-		fetch( this.request_domain + '?' + this._param( query ) )
+		fetch( this.request_domain + '?' + this._object_to_query_string( query ) )
 			.then( response => response.json() )
 			.then( json_data => {
 				this._parse_data( json_data, element );
@@ -40,7 +40,7 @@ export default class YoutubePlaylistModule {
 			.catch( error => console.error( error ) ); // eslint-disable-line no-console
 	}
 
-	_param( object ) {
+	_object_to_query_string( object ) {
 		return Object.entries( object ).map( ( [key, val] ) => `${key}=${val}` ).join('&');
 	}
 
@@ -78,7 +78,7 @@ export default class YoutubePlaylistModule {
 		element.appendChild( playlist );
 
 		// Other params: https://developers.google.com/youtube/player_parameters
-		const video_url = id => `http://www.youtube.com/embed/${ id }?${ this._param( this.iframe_options ) }`;
+		const video_url = id => `http://www.youtube.com/embed/${ id }?${ this._object_to_query_string( this.iframe_options ) }`;
 
 		Array.from( video_items ).map( ( item, index ) => {
 			index === 0 ? // On the first interation we don't ever want to autoplay video.
