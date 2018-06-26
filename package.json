@@ -15,7 +15,7 @@
   "engines": {
     "node": ">=8.9.1"
   },
-  "main": "app/assets/YoutubePlaylistModule.js",
+  "main": "app/components/scripts/YoutubePlaylistModule.js",
   "devDependencies": {
     "babel-core": "6.26.3",
     "babel-loader": "7.1.4",
