@@ -34,10 +34,10 @@ bower_components
 *.css.map
 .tmp
 .zip
-dist
 node_modules
 logs
 cache
 .phpintel
 assets
+!dist/assets
 /app/components/scripts/modules/auth.js
