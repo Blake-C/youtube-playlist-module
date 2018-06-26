@@ -1,6 +1,6 @@
 Youtube Playlist Module
 =======================
-A web browser based javascript module for displaying youtube playlists.
+A web based javascript module for displaying youtube playlists.
 
 ## Installation
 ```sh
@@ -8,7 +8,7 @@ npm install youtube-playlist-module -S
 ```
 
 ## Initiate Module
-Follow these instrucions to get your YouTube API Key: [YouTube Data API Overview](https://developers.google.com/youtube/v3/getting-started)
+Follow these instructions to get your YouTube API Key: [YouTube Data API Overview](https://developers.google.com/youtube/v3/getting-started)
 ```html
 <div class="playlist-1" data-playlist="PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84"></div>
 ```
