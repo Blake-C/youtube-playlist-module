@@ -14,6 +14,9 @@ export default class YoutubePlaylistModule {
 		this.request_domain = 'https://www.googleapis.com/youtube/v3/playlistItems';
 	}
 
+	/**
+	 * Initializes module
+	 */
 	init() {
 		if ( this.element.length ) {
 			Array.from( this.element ).map( item => {
@@ -24,6 +27,12 @@ export default class YoutubePlaylistModule {
 		if ( this.playlist_id ) this._get_data( this.playlist_id, this.element );
 	}
 
+	/**
+	 * Fetches YouTube API data.
+	 *
+	 * @param  string playlist_id The playlist ID to pull the videos from.
+	 * @param  object element     The HTML element to attach the playlist to.
+	 */
 	_get_data( playlist_id, element ) {
 		const query = {
 			part: 'snippet',
@@ -40,10 +49,22 @@ export default class YoutubePlaylistModule {
 			.catch( error => console.error( error ) ); // eslint-disable-line no-console
 	}
 
+	/**
+	 * Transforms data object into URL query string.
+	 *
+	 * @param  object object The object to be converted into query string.
+	 * @return string        The Object transformed into query string.
+	 */
 	_object_to_query_string( object ) {
 		return Object.entries( object ).map( ( [key, val] ) => `${key}=${val}` ).join('&');
 	}
 
+	/**
+	 * Method that returns the playlist video items.
+	 *
+	 * @param  object data Data for each playlist video item.
+	 * @return string      The playlist markup
+	 */
 	playlist_items_template( data ) {
 		return `<li>
 			<a class="ypm_video_items" href="#" data-id="${ data.snippet.resourceId.videoId }">
@@ -53,6 +74,12 @@ export default class YoutubePlaylistModule {
 		</li>`;
 	}
 
+	/**
+	 * Method that returns the playlist template build out.
+	 *
+	 * @param  object response The data returned from the YouTube API.
+	 * @return string          The playlist markup
+	 */
 	playlist_template( response ) {
 		return `<div class="ypm_youtube-video-playlist">
 			<div class="ypm_video-player">
@@ -67,6 +94,12 @@ export default class YoutubePlaylistModule {
 		</div>`;
 	}
 
+	/**
+	 * Parse response data into playlist HTML.
+	 *
+	 * @param  object response The data returned from the YouTube API.
+	 * @param  object element  The DOM element to attach the playlist.
+	 */
 	_parse_data( response, element ) {
 		const template       = this.playlist_template( response );
 		const fragment       = new DOMParser().parseFromString( template, 'text/html' );
