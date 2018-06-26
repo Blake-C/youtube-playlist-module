@@ -69,6 +69,14 @@ const playlist_3 = new YoutubePlaylistModuleCustom({
 playlist_3.init();
 ```
 
+## Styles
+To import the styles using SCSS
+```scss
+@import 'youtube-playlist-module/app/components/styles/styles';
+```
+- or you can grab the CSS file from the distribution directory.
+- or you can styles the module yourself.
+
 ## Contact
    * Twitter: [https://twitter.com/BlakeCerecero][1]
    * Portfolio: [http://digitalblake.com/][2]
