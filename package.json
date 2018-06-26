@@ -1,5 +1,17 @@
 {
-  "private": true,
+  "name": "youtube-playlist-module",
+  "description": "A web browser based javascript module for displaying youtube playlists.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Blake-C/youtube-playlist-module"
+  },
+  "author": "Blake Cerecero",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://opensource.org/licenses/MIT"
+    }
+  ],
   "engines": {
     "node": ">=8.9.1"
   },
