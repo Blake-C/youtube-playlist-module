@@ -13,7 +13,7 @@ Follow these instrucions to get your YouTube API Key: [YouTube Data API Overview
 <div class="playlist-1" data-playlist="PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84"></div>
 ```
 ```javascript
-import YoutubePlaylistModule from 'YoutubePlaylistModule';
+import YoutubePlaylistModule from 'youtube-playlist-module';
 
 // Where '##########' is your YouTube API Key.
 const playlist_element = document.getElementsByClassName( 'playlist-1' );
