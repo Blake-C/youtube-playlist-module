@@ -68,6 +68,9 @@ const playlist_3 = new YoutubePlaylistModuleCustom({
 });
 playlist_3.init();
 ```
+Note: If you are using babel to transpile your scripts, extending this class might not work. 
+The only solution I know of would be to include this module within your scripts and to not
+import it from npm.
 
 ## Styles
 To import the styles using SCSS
