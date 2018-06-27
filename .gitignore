@@ -39,5 +39,7 @@ logs
 cache
 .phpintel
 assets
+auth.js
+*.test.*
+
 !dist/assets
-/app/components/scripts/modules/auth.js
