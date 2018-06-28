@@ -29,6 +29,7 @@ const playlist_1 = new YoutubePlaylistModule({
 });
 playlist_1.init();
 ```
+For a list of values to pass into query_options, review the supported paramaters: [YouTube Embedded Players and Player Parameters](https://developers.google.com/youtube/player_parameters)
 
 ## Initialize Using Element ID
 ```javascript
