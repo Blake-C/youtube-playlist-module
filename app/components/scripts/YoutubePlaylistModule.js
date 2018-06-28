@@ -4,13 +4,13 @@ export default class YoutubePlaylistModule {
 		element,
 		playlist_id,
 		max_results = '5',
-		iframe_options = {}
+		query_options = {}
 	}) {
 		this.api_key        = api_key;
 		this.element        = element;
 		this.playlist_id    = playlist_id;
 		this.max_results    = max_results;
-		this.iframe_options = iframe_options;
+		this.query_options = query_options;
 		this.request_domain = 'https://www.googleapis.com/youtube/v3/playlistItems';
 	}
 
@@ -106,17 +106,17 @@ export default class YoutubePlaylistModule {
 		const playlist       = fragment.body.childNodes[0];
 		const video_items    = playlist.getElementsByClassName( 'ypm_video_items' );
 		const iframe         = playlist.getElementsByClassName( 'ypm_iframe' )[0];
-		const autoplay_state = this.iframe_options.autoplay;
+		const autoplay_state = this.query_options.autoplay;
 
 		element.appendChild( playlist );
 
 		// Other params: https://developers.google.com/youtube/player_parameters
-		const video_url = id => `http://www.youtube.com/embed/${ id }?${ this._object_to_query_string( this.iframe_options ) }`;
+		const video_url = id => `http://www.youtube.com/embed/${ id }?${ this._object_to_query_string( this.query_options ) }`;
 
 		Array.from( video_items ).map( ( item, index ) => {
 			index === 0 ? // On the first interation we don't ever want to autoplay video.
-				this.iframe_options.autoplay = 0 :
-				this.iframe_options.autoplay = autoplay_state;
+				this.query_options.autoplay = 0 :
+				this.query_options.autoplay = autoplay_state;
 
 			index === 0 ? iframe.setAttribute( 'src', video_url( item.getAttribute( 'data-id' ) ) ) : '';
 			index === 0 ? item.classList.add( 'ypm_active' ) : '';

@@ -7,7 +7,7 @@ const playlist_1 = new YoutubePlaylistModule({
 	api_key: AUTH.api_key,
 	element: document.getElementsByClassName( 'playlist-1' ),
 	max_results: 20,
-	iframe_options: {
+	query_options: {
 		showinfo: 0,
 		autoplay: 1,
 		rel: 0,
@@ -45,7 +45,7 @@ const playlist_3 = new YoutubePlaylistModuleCustom({
 	api_key: AUTH.api_key,
 	element: document.getElementById( 'playlist-3' ),
 	max_results: 20,
-	iframe_options: {
+	query_options: {
 		autoplay: 1
 	},
 	playlist_id: 'PLLnpHn493BHFTDL9M1PKnxQwBwOZ8J-h4'
