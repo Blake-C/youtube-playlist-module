@@ -108,8 +108,6 @@ export default class YoutubePlaylistModule {
 		const iframe         = playlist.getElementsByClassName( 'ypm_iframe' )[0];
 		const autoplay_state = this.query_options.autoplay;
 
-		element.appendChild( playlist );
-
 		// Other params: https://developers.google.com/youtube/player_parameters
 		const video_url = id => `http://www.youtube.com/embed/${ id }?${ this._object_to_query_string( this.query_options ) }`;
 
@@ -129,5 +127,7 @@ export default class YoutubePlaylistModule {
 				iframe.setAttribute( 'src', video_url( this.getAttribute( 'data-id' ) ) );
 			});
 		});
+
+		element.appendChild( playlist );
 	}
 }
