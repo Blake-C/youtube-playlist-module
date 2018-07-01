@@ -112,12 +112,13 @@ export default class YoutubePlaylistModule {
 		const video_url = id => `http://www.youtube.com/embed/${ id }?${ object_to_query_string( this.query_options ) }`;
 
 		Array.from( video_items ).map( ( item, index, this_array ) => {
-			index === 0 ? // On the first interation we don't ever want to autoplay video.
-				this.query_options.autoplay = 0 :
+			if ( index === 0 ) {
+				iframe.setAttribute( 'src', video_url( item.getAttribute( 'data-id' ) ) );
+				item.classList.add( 'ypm_active' );
+				this.query_options.autoplay = 0;
+			} else {
 				this.query_options.autoplay = autoplay_state;
-
-			index === 0 ? iframe.setAttribute( 'src', video_url( item.getAttribute( 'data-id' ) ) ) : '';
-			index === 0 ? item.classList.add( 'ypm_active' ) : '';
+			}
 
 			item.addEventListener( 'click', function( event ) {
 				event.preventDefault();
