@@ -10,7 +10,7 @@ export default class YoutubePlaylistModule {
 		this.element        = element;
 		this.playlist_id    = playlist_id;
 		this.max_results    = max_results;
-		this.query_options = query_options;
+		this.query_options  = query_options;
 		this.request_domain = 'https://www.googleapis.com/youtube/v3/playlistItems';
 	}
 
