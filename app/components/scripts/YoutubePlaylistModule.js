@@ -1,3 +1,13 @@
+/**
+ * Transforms data object into URL query string.
+ *
+ * @param  object object The object to be converted into query string.
+ * @return string        The Object transformed into query string.
+ */
+function object_to_query_string( object ) {
+	return Object.entries( object ).map( ( [key, val] ) => `${key}=${val}` ).join('&');
+}
+
 export default class YoutubePlaylistModule {
 	constructor({
 		api_key,
@@ -41,22 +51,12 @@ export default class YoutubePlaylistModule {
 			key: this.api_key
 		};
 
-		fetch( this.request_domain + '?' + this._object_to_query_string( query ) )
+		fetch( this.request_domain + '?' + object_to_query_string( query ) )
 			.then( response => response.json() )
 			.then( json_data => {
 				this._parse_data( json_data, element );
 			})
 			.catch( error => console.error( error ) ); // eslint-disable-line no-console
-	}
-
-	/**
-	 * Transforms data object into URL query string.
-	 *
-	 * @param  object object The object to be converted into query string.
-	 * @return string        The Object transformed into query string.
-	 */
-	_object_to_query_string( object ) {
-		return Object.entries( object ).map( ( [key, val] ) => `${key}=${val}` ).join('&');
 	}
 
 	/**
@@ -109,7 +109,7 @@ export default class YoutubePlaylistModule {
 		const autoplay_state = this.query_options.autoplay;
 
 		// Other params: https://developers.google.com/youtube/player_parameters
-		const video_url = id => `http://www.youtube.com/embed/${ id }?${ this._object_to_query_string( this.query_options ) }`;
+		const video_url = id => `http://www.youtube.com/embed/${ id }?${ object_to_query_string( this.query_options ) }`;
 
 		Array.from( video_items ).map( ( item, index, this_array ) => {
 			index === 0 ? // On the first interation we don't ever want to autoplay video.
