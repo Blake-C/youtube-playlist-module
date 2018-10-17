@@ -109,7 +109,7 @@ export default class YoutubePlaylistModule {
 		const autoplay_state = this.query_options.autoplay;
 
 		// Other params: https://developers.google.com/youtube/player_parameters
-		const video_url = id => `http://www.youtube.com/embed/${ id }?${ object_to_query_string( this.query_options ) }`;
+		const video_url = id => `https://www.youtube.com/embed/${ id }?${ object_to_query_string( this.query_options ) }`;
 
 		Array.from( video_items ).map( ( item, index, this_array ) => {
 			if ( index === 0 ) {
