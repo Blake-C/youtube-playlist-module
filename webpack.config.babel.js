@@ -50,7 +50,7 @@ const webpackConfig = {
 			exclude: /node_modules(?!\/foundation-sites)/,
 			options: {
 				'presets': [
-					['env', {
+					['@babel/preset-env', {
 						'targets': {
 							'browsers': ['last 3 versions', 'ie >= 11']
 						},

@@ -2,17 +2,11 @@
   "root": true,
   "extends": ["eslint:recommended"],
   "env": {
-    "browser": true,
-    "jquery": true,
-    "es6": true
+    "browser": true
   },
   "parserOptions": {
-    "ecmaVersion": 6,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "experimentalObjectRestSpread": true,
-      "jsx": true
-    }
+    "ecmaVersion": 8,
+    "sourceType": "module"
   },
   "rules": {
     "indent": ["warn", "tab"],
