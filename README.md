@@ -1,57 +1,69 @@
-Youtube Playlist Module
-=======================
+# Youtube Playlist Module
+
 A web based javascript module for displaying youtube playlists.
 
+![YouTube Playlist Preview](https://github.com/Blake-C/docs/blob/master/static_files/youtube-playlist.gif?raw=true "YouTube Playlist Preview")
+
 ## Installation
+
 ```sh
 npm install youtube-playlist-module -S
 ```
 
 ## Initiate Module
+
 Follow these instructions to get your YouTube API Key: [YouTube Data API Overview](https://developers.google.com/youtube/v3/getting-started)
+
 ```html
-<div class="playlist-1" data-playlist="PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84"></div>
+<div
+  class="playlist-1"
+  data-playlist="PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84"
+></div>
 ```
+
 ```javascript
-import YoutubePlaylistModule from 'youtube-playlist-module';
+import YoutubePlaylistModule from "youtube-playlist-module";
 
 // Where '##########' is your YouTube API Key.
-const playlist_element = document.getElementsByClassName( 'playlist-1' );
+const playlist_element = document.getElementsByClassName("playlist-1");
 const playlist_1 = new YoutubePlaylistModule({
-  api_key: '##########',
+  api_key: "##########",
   element: playlist_element,
   max_results: 20,
   query_options: {
     showinfo: 0,
     autoplay: 1,
-    rel: 0,
+    rel: 0
   }
 });
 playlist_1.init();
 ```
+
 For a list of values to pass into query_options, review the supported paramaters: [YouTube Embedded Players and Player Parameters](https://developers.google.com/youtube/player_parameters)
 
 ## Initialize Using Element ID
+
 ```javascript
 const playlist_2 = new YoutubePlaylistModule({
-  api_key: '##########',
-  element: document.getElementById( 'playlist-2' ),
-  playlist_id: 'PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84'
+  api_key: "##########",
+  element: document.getElementById("playlist-2"),
+  playlist_id: "PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84"
 });
 playlist_2.init();
 ```
 
 ## Extend Module
+
 ```javascript
 class YoutubePlaylistModuleCustom extends YoutubePlaylistModule {
-  playlist_items_template( data ) {
-    const date = new Date( data.snippet.publishedAt ).toISOString().split('T')[0];
+  playlist_items_template(data) {
+    const date = new Date(data.snippet.publishedAt).toISOString().split("T")[0];
 
     return `<li>
-      <a class="ypm_video_items" href="#" data-id="${ data.snippet.resourceId.videoId }">
+      <a class="ypm_video_items" href="#" data-id="${data.snippet.resourceId.videoId}">
         <p>
-          ${ date } <br/> <br/>
-          ${ data.snippet.description }
+          ${date} <br/> <br/>
+          ${data.snippet.description}
         </p>
       </a>
     </li>`;
@@ -59,31 +71,36 @@ class YoutubePlaylistModuleCustom extends YoutubePlaylistModule {
 }
 
 const playlist_3 = new YoutubePlaylistModuleCustom({
-  api_key: '##########',
-  element: document.getElementById( 'playlist-3' ),
+  api_key: "##########",
+  element: document.getElementById("playlist-3"),
   max_results: 20,
   query_options: {
     autoplay: 1
   },
-  playlist_id: 'PLLnpHn493BHFTDL9M1PKnxQwBwOZ8J-h4'
+  playlist_id: "PLLnpHn493BHFTDL9M1PKnxQwBwOZ8J-h4"
 });
 playlist_3.init();
 ```
-Note: If you are using babel to transpile your scripts, extending this class might not work. 
+
+Note: If you are using babel to transpile your scripts, extending this class might not work.
 The only solution I know of would be to include this module within your scripts and to not
 import it from npm.
 
 ## Styles
+
 To import the styles using SCSS
+
 ```scss
-@import 'youtube-playlist-module/app/components/styles/styles';
+@import "youtube-playlist-module/app/components/styles/styles";
 ```
+
 - or you can grab the CSS file from the distribution directory.
 - or you can styles the module yourself.
 
 ## Contact
-   * Twitter: [https://twitter.com/BlakeCerecero][1]
-   * Portfolio: [http://digitalblake.com/][2]
+
+- Twitter: [https://twitter.com/BlakeCerecero][1]
+- Portfolio: [http://digitalblake.com/][2]
 
 [1]: https://twitter.com/BlakeCerecero "https://twitter.com/BlakeCerecero"
 [2]: http://digitalblake.com/ "http://digitalblake.com/"
